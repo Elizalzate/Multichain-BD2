@@ -67,7 +67,6 @@ public class VerObras {
 
         List<List<String>> array = new ArrayList<>();
         try {
-            //String nombre= getNombre(numero);
 
             List<StreamKeyItem> items = (List<StreamKeyItem>) commandManager.invoke(CommandElt.LISTSTREAMITEMS, "Obras");
 
@@ -97,7 +96,6 @@ public class VerObras {
 
         List<List<String>> array = new ArrayList<>();
         try {
-            //String nombre= getNombre(numero);
 
             List<StreamKeyItem> items = (List<StreamKeyItem>) commandManager.invoke(CommandElt.LISTSTREAMITEMS, "Obras");
 
@@ -127,7 +125,6 @@ public class VerObras {
 
         List<List<String>> array = new ArrayList<>();
         try {
-            //String nombre= getNombre(numero);
 
             List<StreamKeyItem> items = (List<StreamKeyItem>) commandManager.invoke(CommandElt.LISTSTREAMITEMS, "Obras");
 
