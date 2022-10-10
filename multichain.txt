@@ -5,19 +5,19 @@
 ## INICIO EJECUCION
 
 # Crear la blockchain Art, conectar un segundo nodo, crear streams "Obras"y "Autores" (10%)
-multichain-util create Art                                                  			# Se ejecuta en nodo admin
-multichaind Art -daemon																	# Se ejecuta en nodo admin
+multichain-util create Art                                                  					# Se ejecuta en nodo admin
+multichaind Art -daemon												# Se ejecuta en nodo admin
 multichain-cli Art create stream Obras "{\"restrict\":\"write\"}"						# Se ejecuta en nodo admin
 multichain-cli Art create stream Autores "{\"restrict\":\"write\"}"						# Se ejecuta en nodo admin
 
 # Conectar otro nodo
-multichain-cli Art grant 1QaCfLtBsR4ZTXcMbobvQUvSAztLwmgUzByq25 connect					# Se ejecuta en nodo admin
-multichain-cli Art grant 1QaCfLtBsR4ZTXcMbobvQUvSAztLwmgUzByq25 send					# Se ejecuta en nodo admin
-multichain-cli Art grant 1QaCfLtBsR4ZTXcMbobvQUvSAztLwmgUzByq25 Autores.read			# Se ejecuta en nodo admin
-multichain-cli Art grant 1QaCfLtBsR4ZTXcMbobvQUvSAztLwmgUzByq25 Autores.write			# Se ejecuta en nodo admin
-multichain-cli Art grant 1QaCfLtBsR4ZTXcMbobvQUvSAztLwmgUzByq25 Obras.read				# Se ejecuta en nodo admin
-multichain-cli Art grant 1QaCfLtBsR4ZTXcMbobvQUvSAztLwmgUzByq25 Obras.write				# Se ejecuta en nodo admin
-multichaind Art@192.168.1.30:9541 -daemon      											# Se ejecuta en nodo a conectar
+multichain-cli Art grant 1QaCfLtBsR4ZTXcMbobvQUvSAztLwmgUzByq25 connect						# Se ejecuta en nodo admin
+multichain-cli Art grant 1QaCfLtBsR4ZTXcMbobvQUvSAztLwmgUzByq25 send						# Se ejecuta en nodo admin
+multichain-cli Art grant 1QaCfLtBsR4ZTXcMbobvQUvSAztLwmgUzByq25 Autores.read					# Se ejecuta en nodo admin
+multichain-cli Art grant 1QaCfLtBsR4ZTXcMbobvQUvSAztLwmgUzByq25 Autores.write					# Se ejecuta en nodo admin
+multichain-cli Art grant 1QaCfLtBsR4ZTXcMbobvQUvSAztLwmgUzByq25 Obras.read					# Se ejecuta en nodo admin
+multichain-cli Art grant 1QaCfLtBsR4ZTXcMbobvQUvSAztLwmgUzByq25 Obras.write					# Se ejecuta en nodo admin
+multichaind Art@192.168.1.30:9541 -daemon      									# Se ejecuta en nodo a conectar
 
 # Crear los siguientes smart filters: (30%)  (Se ejecutan en nodo admin)
 
@@ -30,22 +30,32 @@ multichain-cli Art approvefrom 1aoDUx11q8D9ujrktXwpSa3wKFYGHgutAFsFrn filtroObra
 
 # Para probar los stream filters
 
-multichain-cli Art subscribe Autores         # Se ejecuta en ambos nodos
-multichain-cli Art subscribe Obras			 # Se ejecuta en ambos nodos
+multichain-cli Art subscribe Autores         									# Se ejecuta en ambos nodos
+multichain-cli Art subscribe Obras			 							# Se ejecuta en ambos nodos
 
 # Inserción de datos (se ejecutan en nodo a conectar)
 
-multichain-cli Art publish Autores "autor1" "{\"json\":{\"nombre\":\"John Doe\",\"agno_nacimiento\":\“1980\",\"correo\":\“johnd@email.com\"}}"						# Objeto que pasa
-multichain-cli Art publish Autores "autor2" "{\"json\":{\"nombre2\":\"John Doe\",\"agno_nacimiento\":\“1980\",\"correo\":\“johnd@email.com\"}}"						# Objeto que no pasa
-multichain-cli Art publish Autores "autor2" "{\"json\":{\"agno_nacimiento\":\“1980\",\"correo\":\“johnd@email.com\"}}"												# Objeto que no pasa
-multichain-cli Art publish Autores "[\"autor2\", \"autor3\"]" "{\"json\":{\"nombre2\":\"John Doe\",\"agno_nacimiento\":\“1980\",\"correo\":\“johnd@email.com\"}}"   # Objeto que no pasa
-multichain-cli Art publish Autores "autor2" 012345																													# Objeto que no pasa
+# Objeto que pasa
+multichain-cli Art publish Autores "autor1" "{\"json\":{\"nombre\":\"John Doe\",\"agno_nacimiento\":\“1980\",\"correo\":\“johnd@email.com\"}}"
+# Objeto que no pasa
+multichain-cli Art publish Autores "autor2" "{\"json\":{\"nombre2\":\"John Doe\",\"agno_nacimiento\":\“1980\",\"correo\":\“johnd@email.com\"}}"
+# Objeto que no pasa
+multichain-cli Art publish Autores "autor2" "{\"json\":{\"agno_nacimiento\":\“1980\",\"correo\":\“johnd@email.com\"}}"
+# Objeto que no pasa
+multichain-cli Art publish Autores "[\"autor2\", \"autor3\"]" "{\"json\":{\"nombre2\":\"John Doe\",\"agno_nacimiento\":\“1980\",\"correo\":\“johnd@email.com\"}}"
+# Objeto que no pasa
+multichain-cli Art publish Autores "autor2" 012345
 
-multichain-cli Art publish Obras "[\"autor1\", \"obra1\"]" "{\"json\":{\"fecha_creacion\":\"5/5/2005\",\"obra\":\"miNovela\"}}"										# Objeto que pasa
-multichain-cli Art publish Obras "autor2" "{\"json\":{\"fecha_creacion\":\"5/5/2005\",\"obra\":\"miNovela\"}}"														# Objeto que no pasa
-multichain-cli Art publish Obras "[\"autor1\", \"obra2\"]" "{\"json\":{\"obra\":\"miNovela\"}}"																		# Objeto que no pasa
-multichain-cli Art publish Obras "[\"autor1\", \"obra2\"]" "{\"json\":{\"nombre2\":\"John Doe\",\"fecha_creacion\":\"5/5/2005\",\"obra\":\"miNovela\"}}"    		# Objeto que no pasa
-multichain-cli Art publish Obras "[\"autor1\", \"obra2\"]" 012345																									# Objeto que no pasa
+# Objeto que pasa
+multichain-cli Art publish Obras "[\"autor1\", \"obra1\"]" "{\"json\":{\"fecha_creacion\":\"5/5/2005\",\"obra\":\"miNovela\"}}"
+# Objeto que no pasa
+multichain-cli Art publish Obras "autor2" "{\"json\":{\"fecha_creacion\":\"5/5/2005\",\"obra\":\"miNovela\"}}"
+# Objeto que no pasa
+multichain-cli Art publish Obras "[\"autor1\", \"obra2\"]" "{\"json\":{\"obra\":\"miNovela\"}}"
+# Objeto que no pasa
+multichain-cli Art publish Obras "[\"autor1\", \"obra2\"]" "{\"json\":{\"nombre2\":\"John Doe\",\"fecha_creacion\":\"5/5/2005\",\"obra\":\"miNovela\"}}"
+# Objeto que no pasa
+multichain-cli Art publish Obras "[\"autor1\", \"obra2\"]" 012345
 
 ## FIN EJECUCION
 
