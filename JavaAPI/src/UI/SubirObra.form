@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="UI.SubirObra">
-  <grid id="27dc6" binding="frmSubirObra" layout-manager="FlowLayout" hgap="25" vgap="35" flow-align="1">
+  <grid id="27dc6" binding="frmSubirObra" layout-manager="FlowLayout" hgap="25" vgap="38" flow-align="1">
     <constraints>
       <xy x="20" y="20" width="650" height="500"/>
     </constraints>
@@ -19,7 +19,7 @@
         <properties>
           <font name="Segoe UI" size="24"/>
           <foreground color="-16777216"/>
-          <preferredSize width="220" height="40"/>
+          <preferredSize width="250" height="40"/>
           <text value="Nombre de la obra"/>
         </properties>
       </component>
@@ -38,7 +38,7 @@
         <properties>
           <font name="Segoe UI" size="24"/>
           <foreground color="-16777216"/>
-          <preferredSize width="220" height="40"/>
+          <preferredSize width="250" height="40"/>
           <text value="Autor"/>
         </properties>
       </component>
@@ -57,7 +57,7 @@
         <properties>
           <font name="Segoe UI" size="24"/>
           <foreground color="-16777216"/>
-          <preferredSize width="220" height="40"/>
+          <preferredSize width="250" height="40"/>
           <text value="Año de publicación"/>
         </properties>
       </component>
@@ -76,7 +76,7 @@
         <properties>
           <font name="Segoe UI" size="24"/>
           <foreground color="-16777216"/>
-          <preferredSize width="220" height="40"/>
+          <preferredSize width="250" height="40"/>
           <text value="Imagen"/>
         </properties>
       </component>
@@ -90,7 +90,7 @@
           <preferredSize width="300" height="40"/>
         </properties>
       </component>
-      <component id="cf98a" class="javax.swing.JButton" binding="btnRegistrar">
+      <component id="cf98a" class="javax.swing.JButton" binding="btnSubirObra">
         <constraints/>
         <properties>
           <alignmentY value="0.8"/>
@@ -104,7 +104,7 @@
           <minimumSize width="150" height="60"/>
           <opaque value="true"/>
           <preferredSize width="260" height="55"/>
-          <text value="Registrar"/>
+          <text value="Subir"/>
         </properties>
       </component>
     </children>

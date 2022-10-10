@@ -17,14 +17,11 @@ public class SubirObra {
     private String agnoPublicacion;
     private String imagen;
     private JPanel frmSubirObra;
-    private JTextPane txtNombreObra;
-    private JTextPane txtAutor;
-    private JTextPane txtAgnoPublicacion;
-    private JButton btnRegistrar;
-    private JTextPane txtImagen;
+    private JTextPane txtAutor, txtImagen, txtNombreObra, txtAgnoPublicacion;
+    private JButton btnSubirObra;
 
     public SubirObra() {
-        btnRegistrar.addActionListener(new ActionListener() {
+        btnSubirObra.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setProperties();

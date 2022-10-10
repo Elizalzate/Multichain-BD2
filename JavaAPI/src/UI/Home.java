@@ -42,7 +42,7 @@ public class Home {
         f.setContentPane(new Home().frmHome);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.pack();
-        f.setLocation(400, 65);
+        f.setLocation(380, 60);
         f.setVisible(true);
         f.setResizable(false);
     }

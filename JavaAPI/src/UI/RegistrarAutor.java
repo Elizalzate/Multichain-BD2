@@ -29,6 +29,7 @@ public class RegistrarAutor {
             public void actionPerformed(ActionEvent e) {
                 setProperties();
                 registrarAutor(nombre, correo, agnoNacimiento);
+                clearTxt();
             }
         });
     }
