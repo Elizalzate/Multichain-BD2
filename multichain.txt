@@ -1,6 +1,8 @@
-# multichaind Art@192.168.1.30:9541  -->  Dirección del blockchain 
+# multichaind Art@192.168.1.30:9541  	  -->  Dirección del blockchain 
 # 1QaCfLtBsR4ZTXcMbobvQUvSAztLwmgUzByq25  -->  Dirección del nodo a conectar
 # 1aoDUx11q8D9ujrktXwpSa3wKFYGHgutAFsFrn  -->  Dirección local del nodo conectado en el nodo admin
+
+## INICIO EJECUCION
 
 # Crear la blockchain Art, conectar un segundo nodo, crear streams "Obras"y "Autores" (10%)
 multichain-util create Art                                                  			# Se ejecuta en nodo admin
@@ -15,7 +17,7 @@ multichain-cli Art grant 1QaCfLtBsR4ZTXcMbobvQUvSAztLwmgUzByq25 Autores.read			#
 multichain-cli Art grant 1QaCfLtBsR4ZTXcMbobvQUvSAztLwmgUzByq25 Autores.write			# Se ejecuta en nodo admin
 multichain-cli Art grant 1QaCfLtBsR4ZTXcMbobvQUvSAztLwmgUzByq25 Obras.read				# Se ejecuta en nodo admin
 multichain-cli Art grant 1QaCfLtBsR4ZTXcMbobvQUvSAztLwmgUzByq25 Obras.write				# Se ejecuta en nodo admin
-multichaind Art@192.168.1.30:9541       												# Se ejecuta en nodo a conectar
+multichaind Art@192.168.1.30:9541 -daemon      											# Se ejecuta en nodo a conectar
 
 # Crear los siguientes smart filters: (30%)  (Se ejecutan en nodo admin)
 
@@ -44,6 +46,8 @@ multichain-cli Art publish Obras "autor2" "{\"json\":{\"fecha_creacion\":\"5/5/2
 multichain-cli Art publish Obras "[\"autor1\", \"obra2\"]" "{\"json\":{\"obra\":\"miNovela\"}}"																		# Objeto que no pasa
 multichain-cli Art publish Obras "[\"autor1\", \"obra2\"]" "{\"json\":{\"nombre2\":\"John Doe\",\"fecha_creacion\":\"5/5/2005\",\"obra\":\"miNovela\"}}"    		# Objeto que no pasa
 multichain-cli Art publish Obras "[\"autor1\", \"obra2\"]" 012345																									# Objeto que no pasa
+
+## FIN EJECUCION
 
 # SmartFilters
 
