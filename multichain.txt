@@ -1,0 +1,49 @@
+# multichaind Art@172.31.95.40:7187  -->  Dirección del blockchain
+# 1GDJWnNTGXQtXrBkB5gUYLUVGwNyFcMHiPMCNc  -->  Dirección del nodo a conectar
+
+# Crear la blockchain Art, conectar un segundo nodo, crear streams "Obras"y "Autores" (10%)
+multichain-util create Art                                                  # Se ejecuta en nodo admin
+multichaind Art -daemon														# Se ejecuta en nodo admin
+multichain-cli Art create stream Obras "{\"restrict\":\"write\"}"			# Se ejecuta en nodo admin
+multichain-cli Art create stream Autores "{\"restrict\":\"write\"}"			# Se ejecuta en nodo admin
+
+# Conectar otro nodo
+multichain-cli Art grant 1GDJWnNTGXQtXrBkB5gUYLUVGwNyFcMHiPMCNc connect		# Se ejecuta en nodo admin
+multichaind Art@172.31.95.40:7187       									# Se ejecuta en nodo a conectar
+
+# Crear los siguientes smart filters: (30%)  (Se ejecutan en nodo admin)
+
+multichain-cli Art create streamfilter filtroAutores "{}" "function filterstreamitem(){ var obj = getfilterstreamitem(); if(obj.keys.length != 1) return \"El elemento debe tener una única clave\"; if(!obj.data.json) return \"Solo se permiten elementos de tipo JSON\"; if(Object.keys(obj.data.json).length != 3 || Object.keys(obj.data.json).indexOf(\"nombre\") === -1 || Object.keys(obj.data.json).indexOf(\"agno_nacimiento\") === -1 || Object.keys(obj.data.json).indexOf(\"correo\") === -1) return \"Solo se deben tener tres campos que deben ser: nombre, agno_nacimiento y correo\";}"
+
+multichain-cli Art create streamfilter filtroObras "{}" "function filterstreamitem(){ var obj = getfilterstreamitem(); if(obj.keys.length != 2) return \"El elemento debe tener exactamente 2 claves\"; if(!obj.data.json) return \"Solo se permiten elementos de tipo JSON\"; if(Object.keys(obj.data.json).length != 2 || Object.keys(obj.data.json).indexOf(\"fecha_creacion\") === -1 || Object.keys(obj.data.json).indexOf(\"obra\") === -1) return \"Solo se deben tener dos campos que deben ser: fecha_creacion y obra\";}"
+
+multichain-cli Art approvefrom 1GDJWnNTGXQtXrBkB5gUYLUVGwNyFcMHiPMCNc filtroAutores "{\"for\": \"Autores\", \"approve\": true}"
+multichain-cli Art approvefrom 1GDJWnNTGXQtXrBkB5gUYLUVGwNyFcMHiPMCNc filtroObras "{\"for\": \"Obras\", \"approve\": true}"
+
+# SmartFilters
+
+Filtro Autores
+
+function filterstreamitem(){ 
+	var obj = getfilterstreamitem(); 
+	if(obj.keys.length != 1){
+		return "El elemento debe tener una única clave"; 
+	} if(!obj.data.json) {
+		return "Solo se permiten elementos de tipo JSON";
+	} if( Object.keys(obj.data.json).length != 3 || Object.keys(obj.data.json).indexOf(\"nombre\") === -1 || Object.keys(obj.data.json).indexOf(\"agno_nacimiento\") === -1 || Object.keys(obj.data.json).indexOf(\"correo\") === -1) {
+		return "Solo se deben tener tres campos que deben ser: nombre, agno_nacimiento y correo";
+	}
+}
+
+Filtro Obras
+
+function filterstreamitem(){ 
+	var obj = getfilterstreamitem(); 
+	if(obj.keys.length != 2) {
+		return "El elemento debe tener exactamente 2 claves";
+	} if(!obj.data.json) {
+		return "Solo se permiten elementos de tipo JSON";
+	} if(Object.keys(obj.data.json).length != 2 || Object.keys(obj.data.json).indexOf(\"fecha_creacion\") === -1 || Object.keys(obj.data.json).indexOf(\"obra\") === -1) {
+		return \"Solo se deben tener dos campos que deben ser: fecha_creacion y obra\";
+	}
+}
