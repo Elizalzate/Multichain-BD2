@@ -34,7 +34,7 @@ public class RegistrarAutor {
     }
 
     public void loadForm(){
-        JFrame f = new JFrame("Home");
+        JFrame f = new JFrame("Registrar autor");
         f.setContentPane(new RegistrarAutor().frmRegistrarAutor);
         f.pack();
         f.setLocation(400, 65);
@@ -46,6 +46,11 @@ public class RegistrarAutor {
         this.nombre = txtNombreAutor.getText().trim();
         this.correo = txtCorreoAutor.getText().trim();
         this.agnoNacimiento = txtAgnoNacimiento.getText().trim();
+    }
+    private void clearTxt(){
+        txtNombreAutor.setText("");
+        txtCorreoAutor.setText("");
+        txtAgnoNacimiento.setText("");
     }
 
     public void registrarAutor(String nombre, String correo, String agnoNacimiento){
@@ -62,11 +67,8 @@ public class RegistrarAutor {
             Gson gson = new Gson();
             JsonObject arbolJSON = gson.toJsonTree(arbolElementos).getAsJsonObject();
 
-            System.out.println(arbolElementos);
-            System.out.println(arbolJSON);
             commandManager.invoke(CommandElt.PUBLISH, "Autores", nombre, arbolJSON);
-
-            System.out.println("Registrado correctamente");
+            JOptionPane.showMessageDialog(frmRegistrarAutor, "Registrado correctamente");
 
         } catch (MultichainException e) {
             e.printStackTrace();
